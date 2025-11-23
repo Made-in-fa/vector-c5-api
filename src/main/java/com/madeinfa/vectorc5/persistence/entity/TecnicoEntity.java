@@ -21,12 +21,17 @@ public class TecnicoEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String nombre;
-    private String contrasenia;
     private String apellido;
+    private String contrasenia;
     private EstadoTecnico estado = EstadoTecnico.NO_DISPONIBLE;
     private String especialidad;
+    private String tokenFB;
 
     // Relación uno a muchos con IncidenciaEntity
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private List<IncidenciaEntity> incidencias;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "incidencia_tecnico",
+            joinColumns = @JoinColumn(name = "incidencia_id"),
+            inverseJoinColumns = @JoinColumn(name = "tecnico_id")
+    ) private List<IncidenciaEntity> incidencias;
 }

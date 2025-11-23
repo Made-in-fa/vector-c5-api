@@ -20,8 +20,8 @@ public class TecnicoDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID id;
     private String nombre;
-    private String contrasenia;
     private String apellido;
+    private String contrasenia;
     private EstadoTecnico estado = EstadoTecnico.NO_DISPONIBLE;
     private String especialidad;
     private List<IncidenciaEntity> incidencias;

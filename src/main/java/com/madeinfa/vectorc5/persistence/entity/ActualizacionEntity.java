@@ -1,25 +1,28 @@
 package com.madeinfa.vectorc5.persistence.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
+import java.util.List;
+
+
 @Entity
-@Table(name = "solucion")
+@Table(name = "actualizacion")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SolucionEntity {
+public class ActualizacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String descripcion;
-    private String estadoInicial;
-    private String accionCorrectiva;
-    private LocalDateTime fechaIntervencion;
 
+    @OneToMany
+    List<TecnicoEntity> tecnicos;
+
+    LocalDateTime fechaHora;
+    String descripcion;
 }

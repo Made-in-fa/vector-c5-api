@@ -18,12 +18,13 @@ import java.time.LocalDateTime;
 public class IncidenciaDTO {
     private int id;
     private String solucion;
+    private String elemento;
     private String descripcion;
     private EstadoIncidencia estado = EstadoIncidencia.ABIERTA;
     private String sistema;
     private String susbsistema;
     private String gabinete;
-    private LocalDateTime horaInicio;
+    private LocalDateTime horaInicio = LocalDateTime.now();
     private Point coordenadas;
     private String comunica;
     private String desc_inicial;

@@ -1,8 +1,10 @@
 package com.madeinfa.vectorc5.service.implementation;
 
+import com.madeinfa.vectorc5.persistence.entity.IncidenciaEntity;
 import com.madeinfa.vectorc5.persistence.entity.TecnicoEntity;
 import com.madeinfa.vectorc5.persistence.repository.TecnicoRepository;
 import com.madeinfa.vectorc5.service.interfaces.ITecnicoService;
+import com.madeinfa.vectorc5.util.enums.EstadoTecnico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +46,11 @@ public class TecnicoServiceImpl implements ITecnicoService{
         return tecnicoRepository.findAll();
     }
 
+    public String cambiarEstado(UUID id, EstadoTecnico estadoTecnico){
+        TecnicoEntity entity= tecnicoRepository.findById(id).get();
+        entity.setEstado(estadoTecnico);
+        tecnicoRepository.save(entity);
+        return "";
+    }
 
 }

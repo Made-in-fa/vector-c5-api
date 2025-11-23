@@ -9,4 +9,6 @@ public interface IIncidenciasService {
     public DashboardIncidenteResponse obtenerDashboard();
     public IncidenciaDTO obtenerIncidencia(int id);
     public String publicarIncidencia(IncidenciaDTO dto);
+    List<String> obtenerTecnicos(int id);
+    String adjuntarTecnicos(int id);
 }
