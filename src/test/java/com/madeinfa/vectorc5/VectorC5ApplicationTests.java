@@ -1,4 +1,4 @@
-package com.zinnith.vectorc5;
+package com.madeinfa.vectorc5;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

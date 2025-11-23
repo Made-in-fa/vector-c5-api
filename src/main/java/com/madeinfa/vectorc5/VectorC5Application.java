@@ -1,4 +1,4 @@
-package com.zinnith.vectorc5;
+package com.madeinfa.vectorc5;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
