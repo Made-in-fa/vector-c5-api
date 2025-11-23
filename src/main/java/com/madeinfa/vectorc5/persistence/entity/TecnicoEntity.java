@@ -1,6 +1,7 @@
 package com.madeinfa.vectorc5.persistence.entity;
 
 import com.madeinfa.vectorc5.util.enums.EstadoIncidencia;
+import com.madeinfa.vectorc5.util.enums.EstadoTecnico;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,13 +18,13 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class TecnicoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    UUID id;
-    String nombre;
-    String apellido;
-//     estado;
-    String especialidad;
-
+    private UUID id;
+    private String nombre;
+    private String apellido;
+    private EstadoTecnico estado = EstadoTecnico.NO_DISPONIBLE;
+    private String especialidad;
 }

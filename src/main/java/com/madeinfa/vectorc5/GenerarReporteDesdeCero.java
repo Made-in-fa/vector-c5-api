@@ -5,13 +5,12 @@ import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.HorizontalAlignment;
-import com.itextpdf.layout.properties.TextAlignment;
-import com.itextpdf.layout.properties.UnitValue;
-import com.itextpdf.layout.properties.VerticalAlignment;
+import com.itextpdf.layout.properties.*;
+import jakarta.validation.Path;
 
 public class GenerarReporteDesdeCero {
     public static void main(String[] args) throws Exception {
@@ -80,8 +79,21 @@ public class GenerarReporteDesdeCero {
 
         // Tabla de incidencias
 
-        Table tablaInc = new Table(UnitValue.createPercentArray(headerWidths)).useAllAvailableWidth();
-        Cell titInc = new Cell(1,4)
+        Table tablaInc = new Table(UnitValue.createPercentArray(colWidths))
+                .setMarginTop(10.0f);
+
+        float[] widthPK = {4,1,1};
+
+        tablaInc.addCell(new Cell(1,4)
+                .setBackgroundColor(ColorConstants.LIGHT_GRAY)
+                .simulateBold()
+                .add(new Paragraph("Incidencias")));
+        Table valoresPK = new Table(UnitValue.createPointArray(widthPK)).useAllAvailableWidth().setBorderCollapse(BorderCollapsePropertyValue.COLLAPSE);
+        addCell(valoresPK, "N/A", false);
+        addCell(valoresPK, "Via", true);
+        addCell(valoresPK, "N/A", false);
+
+        Cell titleInc = new Cell(1,4)
                 .add(new Paragraph("Incidencia"))
                 .setHorizontalAlignment(HorizontalAlignment.CENTER)
                 .setBackgroundColor(ColorConstants.LIGHT_GRAY)
@@ -105,6 +117,32 @@ public class GenerarReporteDesdeCero {
         addCell(tablaInc, "Sistema", true);
         addCell(tablaInc, "Señalizacion", false);
 
+        // Fila 4
+        addCell(tablaInc, "", true);
+        addCell(tablaInc, "", false);
+        addCell(tablaInc, "Subsistema", true);
+        addCell(tablaInc, "TCM_100", false);
+
+        // Fila 5
+        addCell(tablaInc, "Local tecnico", true);
+        addCell(tablaInc, "Pantitlan", false);
+        addCell(tablaInc, "Gabinete", true);
+        addCell(tablaInc, "PAN TC1", false);
+
+        // Fila 6
+        addCell(tablaInc, "P.K.:", true);
+        tablaInc.addCell(new Cell().setPadding(0).add(valoresPK));
+        addCell(tablaInc, "Elemento:", true);
+        addCell(tablaInc, "Modulo TCM100 de CDV C23PAN", false);
+
+        // Filas solucion
+        addSolCell(tablaInc, "Descripcion", "Aqui va la descripcion completa del problema");
+        addSolCell(tablaInc, "Estado inicial", "Aqui va el estado inicial del problema");
+        addSolCell(tablaInc, "Accion correctiva", "Aqui va la accion correctiva junto con unas imagenes");
+        addSolCell(tablaInc, "Fecha y hora disponible del equipo a intervenir", "23.06.2025  05:31:00 a.m.");
+
+        document.add(tablaInc);
+
 
         document.close();
         System.out.println("PDF Creado Exitosamente");
@@ -116,6 +154,12 @@ public class GenerarReporteDesdeCero {
         if (isHeader) {
             cell.setBackgroundColor(ColorConstants.LIGHT_GRAY);
         }
+        table.addCell(cell);
+    }
+
+    private static void addSolCell(Table table, String text1, String text2) {
+        addCell(table, text1,true);
+        Cell cell = new Cell(1,3).add(new Paragraph(text2));
         table.addCell(cell);
     }
 }
