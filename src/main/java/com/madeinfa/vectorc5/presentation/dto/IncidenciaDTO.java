@@ -1,43 +1,30 @@
-
-package com.madeinfa.vectorc5.persistence.entity;
+package com.madeinfa.vectorc5.presentation.dto;
 
 import com.madeinfa.vectorc5.util.enums.EstadoIncidencia;
-import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.*;
 import org.geolatte.geom.Point;
-
 
 import java.time.LocalDateTime;
 
-@Entity
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "incidencia")
-public class IncidenciaEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Builder
+public class IncidenciaDTO {
     private int id;
     private String solucion;
     private String descripcion;
-    @Enumerated(EnumType.STRING)
     private EstadoIncidencia estado = EstadoIncidencia.ABIERTA;
     private String sistema;
     private String susbsistema;
     private String gabinete;
-
-
-    @Column(name="hora_inicio")
     private LocalDateTime horaInicio;
-
     private Point coordenadas;
     private String comunica;
     private String desc_inicial;
-
-
 }
-

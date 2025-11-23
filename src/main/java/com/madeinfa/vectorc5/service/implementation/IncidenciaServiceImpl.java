@@ -37,16 +37,16 @@ public class IncidenciaServiceImpl implements IIncidenciaService {
 
     @Override
     public List<IncidenciaEntity> getIncidenciasPendientes() {
-        return List.of();
+        return incidenciaRepository.findAllByEstadoPendiente();
     }
 
     @Override
     public List<IncidenciaEntity> getIncidenciasEnCurso() {
-        return List.of();
+        return incidenciaRepository.findAllByEstadoAbierta();
     }
 
     @Override
     public List<IncidenciaEntity> getIncidenciasHistoricas() {
-        return List.of();
+        return incidenciaRepository.findAllByEstadoCerrada();
     }
 }

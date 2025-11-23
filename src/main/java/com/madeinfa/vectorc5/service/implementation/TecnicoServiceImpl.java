@@ -34,6 +34,8 @@ public class TecnicoServiceImpl implements ITecnicoService{
 
     @Override
     public String modifyTecnico(UUID id, TecnicoEntity tecnico) {
+        tecnico.setId(id);
+        tecnicoRepository.save(tecnico);
         return "";
     }
 
@@ -41,4 +43,6 @@ public class TecnicoServiceImpl implements ITecnicoService{
     public List<TecnicoEntity> getTecnicos(){
         return tecnicoRepository.findAll();
     }
+
+
 }
